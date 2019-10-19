@@ -1,0 +1,149 @@
+﻿<!--Authors:Mohammed, Kinglsey,John and Bachir
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome.css" rel="stylesheet" />
+    <link href="~/Content/Index.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+
+    <title>@ViewBag.Title - Welcome To Travel Experts</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+
+</head>
+<body>
+    <!-- Section the main page nav bar -->
+    <nav class="navbar mynavbar navbar-expand-lg ">
+        <a class="navbar-brand" href="#"><span><i class="fa fa-plane" aria-hidden="true"></i> TRAVEL</span> EXPERT</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"><i class="fa fa-bars" aria-hidden="true"></i></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item nav-link active">@Html.ActionLink("HOME", "Index", "Home")<span class="sr-only">(current)</span></li>
+                <li class="nav-item nav-link">@Html.ActionLink("PACKAGES", "Index", "Packages")<span class="sr-only"></span></li>
+                <li class="nav-item nav-link">@Html.ActionLink("CONTACT US", "Contact", "Home")<span class="sr-only"></span></li>
+                @{
+                    if (Session["CustomerID"] != null)
+                    {
+                        <li class="nav-item nav-link">@Html.ActionLink("Update", "Update", "Customers")<span class="sr-only"></span></li>
+                    }
+                }
+
+
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item nav-link ml-auto">
+                    @{
+                        if (Session["CustomerID"] == null)
+                        {
+                            @Html.ActionLink("Log In", "Login", "Customers")
+                        }
+                        else
+                        {
+                            @Html.ActionLink("Log out", "Logout", "Customers")
+                        }
+                    }
+                    <span class="sr-only"></span>
+                </li>
+                
+                <li class="nav-item nav-link ml-auto"> @Html.ActionLink("Register", "Registration", "Customers")<span class="sr-only"></span></li>
+            </ul>
+        </div>
+
+    </nav>
+
+    <div class="body-content">
+        <div>
+            @RenderBody()
+        </div>
+
+        <hr />
+        <div>
+            <footer>
+                <p align="center">Copyright &copy; @DateTime.Now.Year - Travel Experts</p>
+            </footer>
+        </div>
+
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+
+
+
+
+
+@*<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>@ViewBag.Title </title>
+        @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")
+    </head>
+    <body>
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li>@Html.ActionLink("About", "About", "Home")</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                        <li>@Html.ActionLink("Packages", "Index", "Packages")</li>
+                        <li>@Html.ActionLink("Sign Up", "Registration", "Customers")</li>
+                        <li>
+                            @{
+                                if (Session["CustomerID"] == null)
+                                {
+                                    @Html.ActionLink("Log In", "Login", "Customers")
+                                }
+                                else
+                                {
+                                    @Html.ActionLink("Log out","Logout", "Customers")
+                                }
+                            }
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="container body-content">
+            <div>
+                @RenderBody()
+            </div>
+
+            <hr />
+            <div>
+                <footer>
+                    <p>&copy; @DateTime.Now.Year - Travel Experts</p>
+                </footer>
+            </div>
+
+        </div>
+
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
+    </body>
+    </html>*@

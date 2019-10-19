@@ -1,0 +1,85 @@
+﻿@* Modified by Bachir, John *@
+
+
+@model IEnumerable<PurchaseList.Models.Booking>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Package Selection History</h2>
+
+<p>
+   
+    @Html.ActionLink("Add a new package", "Index","Packages")
+  
+</p>
+<table class="table table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.BookingDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookingNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TravelerCount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Customer.CustFirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Package.PkgName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TripType.TTName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Package.PkgBasePrice)
+            </th>
+            @*<th></th>*@
+        </tr>
+    </thead>
+
+   
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.BookingDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BookingNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TravelerCount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Customer.CustFirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Package.PkgName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TripType.TTName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Package.PkgBasePrice)
+            </td>
+            
+
+        </tr>
+
+    }
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>The total price:</td>
+            <td>@ViewBag.PriceSummary.ToString("C")</td>
+        </tr>
+</table>

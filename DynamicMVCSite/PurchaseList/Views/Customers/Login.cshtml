@@ -1,0 +1,75 @@
+﻿@* Modified by Kingsley, John *@
+
+@model PurchaseList.Models.Customer
+
+@{
+    if (Session["CustomerID"] == null)
+    {
+        ViewBag.Title = "Login";
+        <h2>Login</h2>
+    }
+    else
+    {
+        ViewBag.Title = "Logout";
+        <h2>Logout</h2>
+    }
+
+}
+
+
+
+@using (Html.BeginForm("LogIn", "Customers", null, FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+        <div class="registrationFormat">
+            <div class="form-horizontal">
+                <h4>Please fill your login information</h4>
+                <hr />
+
+               
+                <div class="form-group col-sm col-md col-lg">
+                   
+                        <input type="text" class="form-control col-sm-9 col-md-9 col-lg-9" required="" placeholder="Username" name="UserName" />
+                   
+                </div>
+                <div class="form-group col-sm col-md col-lg">
+                   
+                        <input type="password" class="form-control col-sm-9 col-md-9 col-lg-9" required="" placeholder="Password" name="Password" />
+                  
+                </div>
+                <div class="form-group col-sm col-md col-lg">
+
+                  
+                        <button class="btn btn-success">Login</button>
+                
+                </div>
+                <div class="login-subtitle">
+                    Don't have an account yet?@Html.ActionLink("Create an account", "Registration", "Customers")
+                </div>
+
+            </div>
+
+
+
+            @if (ViewBag.SuccessMessage != null)
+            {
+                ViewBag.ErrorMessage = null;
+                <div class="alert alert-success alert-dismissible">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong>@ViewBag.SuccessMessage</strong>
+                </div>
+            }
+            @if (ViewBag.ErrorMessage != null)
+            {
+                ViewBag.SuccessMessage = null;
+                <div class="alert alert-danger alert-dismissible">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong>@ViewBag.ErrorMessage</strong>
+                </div>
+            }
+        </div>
+}
+
+<p>
+
+</p>

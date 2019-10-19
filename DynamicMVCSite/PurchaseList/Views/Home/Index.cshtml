@@ -1,0 +1,412 @@
+﻿@* Modified by Mohammad, John *@
+@{
+    ViewBag.Title = "Home Page";
+}
+<link href="~/Content/Site.css" rel="stylesheet" />
+<link href="~/Content/Index.css" rel="stylesheet" />
+<link href="~/Content/Carosal.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.0.0-beta.3/assets/owl.carousel.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
+
+<!--section main that include top menu header which inlude search option for the different packages-->
+
+<section class="header-section d-flex align-items-lg-end align-items-md-end">
+
+    <!-- Container div used to position the search bar -->
+
+    <div class="container  ">
+
+        <div class="row">
+
+            <!-- Column containing  the search bar-->
+
+            <div class="col-lg-9 offset-lg-2 col-md-9 offset-md-2">
+
+                <form class="needs-validation vacation-form" method="post" action="#" novalidate>
+
+                    <!-- row in the searchsection containing the button for the vation and hotel  -->
+
+                    <div class="form-row">
+
+                        <div class="btn-group">
+
+                            <button class="btn btn-primary" type="submit">
+                                <i class="fa fa-globe" aria-hidden="true"></i>
+
+                                VACATION
+                            </button>
+
+                            <button class="btn btn-primary" type="submit">
+                                <i class="fa fa-bed"
+                                   aria-hidden="true"></i>HOTELS+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                    <!-- row in the searchsection containing the input for the depart and going input  -->
+
+                    <div class="form-row">
+
+                        <div class="col-md-6 mb-3">
+
+
+                            <label for="validationAirport">Departing From</label>
+
+                            <input type="text" class="form-control placeicon" id="validationCustom03" placeholder='&#xf041; FROM'
+                                   required>
+
+                            <div class="invalid-feedback">
+
+                                Please provide a valid city.
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+
+                            <label for="validationAirport">Going To</label>
+
+                            <input type="text" class="form-control placeicon" id="validationCustom04" placeholder="&#xf041; TO"
+                                   required>
+
+                            <div class="invalid-feedback">
+
+                                Please provide a City.
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                        <!-- row in the searchsection containing the calendar with the departure, return date, and the passenger number -->
+
+                        <div class="form-row">
+
+                            <div class="col-md-4 mb-3">
+
+                                <label for="validationCustom05">Departure Date</label>
+
+                                <input type="date" class="form-control placeicon" id="validationCustom05" placeholder="&#xf073; Date"
+                                       required>
+
+                                <div class="invalid-feedback">
+
+                                    Please provide a valid date.
+
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+
+                                <label for="validationCustom05">Return Date</label>
+
+                                <input type="date" class="form-control placeicon" id="validationCustom05"
+                                       placeholder="&#xf073; Adults" required>
+
+                                <div class="invalid-feedback">
+
+                                    Please provide a valid date.
+
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+
+                                <label for="validationCustom05">Travellers</label>
+
+                                <input type="number" class="form-control placeicon" id="validationCustom05" value="1"
+                                       placeholder="&#xf183;  Travellers " required>
+
+                                <div class="invalid-feedback">
+
+                                    Please provide Number of travel.
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <!-- row in the searchsection containing the the submit button -->
+
+                        <div id="input-btn">
+
+                            <button class="btn btn-primary" type="submit">SEARCH</button>
+
+                        </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section>
+    <h1>Future Destination</h1>
+    <div class="container">
+        <div class="row">
+            @* read data from DB.Package and post for each *@
+            @foreach (var item in Model)
+            {
+                <div class='col-lg-3 col-md-6'>
+                    <div class='feature-box'>
+                        <div class='feature-img'>
+                            @* get image with same name of the package *@
+                            <img src='~/Images/Packages/@item.ImageFile' alt='@item.PkgName' />
+                            <div class='price'>
+                                @* convert price to currency formate *@
+                                <p>@Convert.ToDecimal(item.PkgBasePrice).ToString("C0")</p>
+                            </div>
+                            <div class='rating'>
+                                <i class='fa fa-star' aria-hidden='true'></i>
+                                <i class='fa fa-star' aria-hidden='true'></i>
+                                <i class='fa fa-star' aria-hidden='true'></i>
+                                <i class='fa fa-star' aria-hidden='true'></i>
+                                <i class='fa fa-star-half-o' aria-hidden='true'></i>
+                            </div>
+                        </div>
+                        <div class='feature-details'>
+                            <h4>@item.PkgName</h4>
+                            <p>@item.PkgDesc</p>
+                            <div>
+                                <span>
+                                    <b>
+                                        <i class='fa fa-calendar-check-o' aria-hidden='true'>
+                                            @* convert start date to mm/dd/yyyy format *@
+                                        </i>@Convert.ToDateTime(item.PkgStartDate).ToString("MM/dd/yyyy")
+                                    </b>
+                                </span><span>
+                                    <b>
+                                        @* calculate period and convert to int *@
+                                        <i class='fa fa-sun-o'></i>@{
+                                            TimeSpan period;
+                                            int? days;
+                                            if ((item.PkgStartDate != null) && (item.PkgEndDate != null))
+                                            {
+                                                period = item.PkgEndDate - item.PkgStartDate;
+                                                days = period.Days;
+
+                                            }
+                                            else
+                                            {
+                                                days = null;
+                                            }
+                                        } @days days
+                                    </b>
+                                </span>
+                            </div>
+
+                        </div>
+                        <input type="button" class="btn btn-info" value="Order Now!" onclick="location.href='@Url.Action("Details", "Packages",new {id=item.PackageId })'" />
+                        
+
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+   
+    
+</section>
+
+
+
+
+<!--section section that inlude travelling gallery for the different location contain in  carousel -->
+<section class="gallery">
+    <h1>Travelling Gallery</h1>
+    <div class="owl-carousel">
+
+
+        <div class="item">
+            <a class="popup-text gallery-box" href="#1">
+                <img src="~/Images/mainPage/china3.jpg" alt="">
+                <h4>China</h4>
+            </a>
+
+        </div>
+
+        <div class="item">
+            <a class="popup-text gallery-box" href="#2">
+                <img src="~/Images/mainPage/newyork2.jpg" alt="">
+                <h4>New York</h4>
+            </a>
+
+        </div>
+
+        <div class="item">
+            <a class="popup-text gallery-box" href="#3">
+                <img src="~/Images/mainPage/paris.jpg" alt="">
+                <h4>Paris</h4>
+            </a>
+
+        </div>
+
+        <div class="item">
+            <a class="popup-text gallery-box" href="#4">
+                <img src="~/Images/mainPage/cliffs.jpg" alt="">
+                <h4>Scotland</h4>
+            </a>
+
+        </div>
+
+        <div class="item">
+            <a class="popup-text gallery-box" href="#5">
+                <img src="~/Images/mainPage/africa.jpg" alt="">
+                <h4>South Africa</h4>
+            </a>
+
+        </div>
+
+    </div>
+    <!--section section that inlude travelling gallery for the different location contain in  carousel -->
+</section>
+<section class="banner">
+    <div class="banner-highlights">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <h2>Get 20% Off on Top Destination</h2>
+                    <p>Book your ticket before August 31 st and avail 20% flat discount</p>
+                </div>
+                <div class="col-md-4">
+                    <button type="button" class="booking-btn" onclick="location.href='@Url.Action("Index", "Packages")'">Book Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--section for Agent Info which include agent info and location-->
+<section class="Agent-description">
+    <h1>Agents Information</h1>
+    <div class="container">
+        <div class="row">
+            <!-- column contain agent 1 info-->
+            <div class="col-md-3">
+                <div class="agent-desc">
+                    <img src="~/Images/mainPage/1.jpg" alt="">
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero fugiat temporibus tenetur eveniet magni
+                        quaerat?
+                    </p>
+                    <h5>Janet Delton</h5>
+                    <small>Calgary</small>
+                </div>
+            </div>
+            <!-- column contain agent 2 info-->
+            <div class="col-md-3">
+                <div class="agent-desc">
+                    <img src="~/Images/mainPage/2.jpg" alt="">
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero fugiat temporibus tenetur eveniet magni
+                        quaerat?
+                    </p>
+                    <h5>Judy Lisle</h5>
+                    <small>Calgary</small>
+                </div>
+            </div>
+            <!-- column contain agent 3 info-->
+            <div class="col-md-3">
+                <div class="agent-desc">
+                    <img src="~/Images/mainPage/3.jpg" alt="">
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero fugiat temporibus tenetur eveniet magni
+                        quaerat?
+                    </p>
+                    <h5>Dennis Reynolds</h5>
+                    <small>Calgary</small>
+                </div>
+            </div>
+            <!-- column contain agent 4 info-->
+            <div class="col-md-3">
+                <div class="agent-desc">
+                    <img src="~/Images/mainPage/6.jpg" alt="">
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero fugiat temporibus tenetur eveniet magni
+                        quaerat?
+                    </p>
+                    <h5>Bruce Dixon</h5>
+                    <small>Okotoks</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--section for Agent Info which include agent info and location-->
+
+<section class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <img src="#" alt="">
+                <!-- Empty dive to add info about company-->
+            </div>
+            <div class="col-md-3">
+                <h4> Features</h4>
+                <p> Deals & Offers</p>
+                <p> Customer Reviews</p>
+                <p> Cancellation Policy</p>
+            </div>
+            <div class="col-md-3">
+                <h4> Quick Contact</h4>
+                <p> <i class="fa fa-phone-square"></i> +587 902 8177</p>
+                <p> <i class="fa fa-envelope"></i> Travelexperts@Travelexperts.com</p>
+                <p> <i class="fa fa-home"></i> 1947 38St NE Calgary Alberta</p>
+            </div>
+            <div class="col-md-3">
+                <h4> Follow US</h4>
+                <p> <i class="fa fa-facebook"></i> Facebook</p>
+                <p> <i class="fa fa-youtube-play"></i> Youtube</p>
+                <p> <i class="fa fa-twitter"></i> Twitter</p>
+            </div>
+        </div>
+        @*<hr>
+            <p Class="copyright"> COPYRIGHT <i class="fa fa-heart"> BY BJMO TECH</i> </p>*@
+    </div>
+
+</section>
+
+
+
+<script type="text/javascript">
+    $('#myModal').on('shown.bs.modal', function () {
+        $('#myInput').trigger('focus')
+    })
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<!-- JS source code -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"
+        integrity="sha256-dHf/YjH1A4tewEsKUSmNnV05DDbfGN3g7NMq86xgGh8=" crossorigin="anonymous"></script>
+<script src="js/bootstrap.min.js"></script>
+<script text="text/javascript" src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.0.0-beta.3/owl.carousel.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.js"></script>
+<script src="~/Scripts/carousel.js"></script>
+

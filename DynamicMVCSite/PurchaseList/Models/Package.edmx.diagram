@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="04aacbf6603c4e6bb21c5c9a92bc313f" Name="Diagram1" ZoomLevel="73">
+        <EntityTypeShape EntityType="TravelExpertsModel.Agency" Width="1.5" PointX="0.875" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelExpertsModel.Agent" Width="1.5" PointX="0.875" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelExpertsModel.BookingDetail" Width="1.5" PointX="8.5" PointY="0.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelExpertsModel.Booking" Width="1.5" PointX="3.25" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelExpertsModel.Class" Width="1.5" PointX="10.625" PointY="0.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelExpertsModel.CreditCard" Width="1.5" PointX="3.75" PointY="0.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelExpertsModel.Customer" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelExpertsModel.Package" Width="1.5" PointX="5.5" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelExpertsModel.Product" Width="1.5" PointX="3.75" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelExpertsModel.Products_Suppliers" Width="1.5" PointX="6.25" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelExpertsModel.Supplier" Width="1.5" PointX="7.625" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelExpertsModel.TripType" Width="1.5" PointX="3.5" PointY="8.875" IsExpanded="true" />
+        <AssociationConnector Association="TravelExpertsModel.FK_Agents_Agencies" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelExpertsModel.FK_Customers_Agents" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelExpertsModel.FK_BookingDetails_Bookings" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelExpertsModel.FK_BookingDetails_Classes" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelExpertsModel.FK_BookingDetails_Products_Suppliers" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelExpertsModel.Bookings_FK00" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelExpertsModel.Bookings_FK01" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelExpertsModel.Bookings_FK02" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelExpertsModel.CreditCards_FK00" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelExpertsModel.Products_Suppliers_FK00" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelExpertsModel.Products_Suppliers_FK01" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelExpertsModel.Packages_Products_Suppliers" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
